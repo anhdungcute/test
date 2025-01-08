@@ -35,6 +35,9 @@ export default defineConfig({
       //Method 2: using path
       "@components": path.resolve(__dirname, "src/components"),
       "@pages": path.resolve(__dirname, "src/@Pages"),
+      "@Login&Admin": path.resolve(__dirname, "src/@Login&Admin"),
+      "@views": path.resolve(__dirname, "src/views"),
+      "@layout": path.resolve(__dirname, "src/Layout"),
     },
   },
 });
