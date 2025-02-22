@@ -2,11 +2,11 @@
   <el-card>
     <div class="user-management">
       <div class="mb-5 flex justify-between">
-        <div><h3 class="font-bold">Quản lý tài khoản</h3></div>
+        <div><h3 class="font-bold">Quản lý công ty</h3></div>
         <div>
           <el-button type="primary" @click="openAddDialog" size="small"
             ><div class="mr-1"><i class="fa-solid fa-plus"></i></div>
-            Thêm tài khoản</el-button
+            Thêm công ty</el-button
           >
         </div>
       </div>
@@ -14,17 +14,12 @@
         <el-table-column type="index" width="50" />
         <el-table-column
           prop="username"
-          label="Username"
-          width="180"
-        ></el-table-column>
-        <el-table-column
-          prop="username"
-          label="Tên người dùng"
+          label="Tên công ty"
         ></el-table-column>
         <el-table-column prop="email" label="Email"></el-table-column>
         <el-table-column
           prop="nameaccount"
-          label="Tên tài khoản"
+          label="Địa chỉ"
         ></el-table-column>
         <el-table-column label="Hành động">
           <template #default="{ row }">
@@ -39,12 +34,12 @@
       </el-table>
 
       <!-- Add/Edit User Dialog -->
-      <el-dialog v-model="dialogVisible" title="User Info">
+      <el-dialog v-model="dialogVisible" :title=" isEditing ? 'Chỉnh sửa công ty' :'Thêm mới công ty'">
         <el-form :model="currentUser" ref="formRef" label-width="100px">
-          <el-form-item label="Họ và tên">
+          <el-form-item label="Tên công ty">
             <el-input
               v-model="currentUser.username"
-              placeholder="Nhập họ và tên..."
+              placeholder="Nhập tên công ty..."
             ></el-input>
           </el-form-item>
           <el-form-item label="Email">
@@ -53,16 +48,10 @@
               placeholder="Nhập email..."
             ></el-input>
           </el-form-item>
-          <el-form-item label="Tên tài khoản">
+          <el-form-item label="Địa chỉ cty">
             <el-input
               v-model="currentUser.nameaccount"
-              placeholder="Nhập tên tài khoản..."
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="Mật khẩu">
-            <el-input
-              v-model="currentUser.password"
-              placeholder="Nhập mật khẩu..."
+              placeholder="Nhập địa chỉ công ty..."
             ></el-input>
           </el-form-item>
           <el-form-item label="Loại tài khoản">

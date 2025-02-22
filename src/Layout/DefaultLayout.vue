@@ -71,9 +71,8 @@ watchEffect(updateBreadcrumbs);
       <main>
         <div class="mx-auto max-w-screen-2xl p-2">
           <Breadcrumb />
-          <el-card>
-            <RouterView />
-          </el-card>
+
+          <RouterView />
         </div>
       </main>
       <!-- ===== Main Content End ===== -->

@@ -1,15 +1,15 @@
 <template>
   <div class="form m-0 h-full w-full p-0">
     <div class="bg m-0 h-full w-full p-0">
-      <div class="over-lay "></div>
-      <div class="container-login ">
+      <div class="over-lay"></div>
+      <div class="container-login">
         <div>
           <!-- From -->
-          <div class="content ">
+          <div class="content">
             <div class="form">
-              <div class="content-form-re ">
+              <div class="content-form-re">
                 <div class="content-form-ab rounded-xl">
-                  <div class="my-5 text-center text-white text-2xl font-bold">
+                  <div class="my-5 text-center text-2xl font-bold text-white">
                     ĐĂNG NHẬP
                   </div>
                   <div>
@@ -22,35 +22,38 @@
                     >
                       <el-form-item
                         class="change-color"
-                        label="Tên đăng nhập"
-                        prop="pass"
+                        label="Username"
+                        :rules="usernameRules"
                       >
                         <el-input
-                          type="password"
-                          placeholder="Nhập tên đăng nhập..."
-                        >
-                        </el-input>
-                      </el-form-item>
-                      <el-form-item
-                        class="change-color"
-                        label="Mật khẩu"
-                        prop="checkPass"
-                      >
-                        <el-input
-                          type="password"
-                          placeholder="Nhập mật khẩu..."
+                          v-model="form.username"
+                          placeholder="Enter username"
                         ></el-input>
                       </el-form-item>
-                      <el-form-item>
-                        <div>
-                          <el-checkbox class="change-color"
-                            >Nhớ đăng nhập</el-checkbox
-                          >
-                        </div>
+
+                      <el-form-item
+                        class="change-color"
+                        label="Password"
+                        :rules="passwordRules"
+                      >
+                        <el-input
+                          v-model="form.password"
+                          type="password"
+                          placeholder="Enter password"
+                        ></el-input>
                       </el-form-item>
+                      <div>
+                        <el-checkbox
+                          class="change-color"
+                          v-model="form.rememberMe"
+                          >Nhớ đăng nhập</el-checkbox
+                        >
+                      </div>
                     </el-form>
                     <div class="mt-5" align="center">
-                      <el-button type="primary">Đăng nhập</el-button>
+                      <el-button type="primary" @click="handleLogin"
+                        >Đăng nhập</el-button
+                      >
                     </div>
                   </div>
                 </div>
@@ -64,7 +67,44 @@
     <div></div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+import { useAuthStore } from "@/Stores/auth";
+interface LoginForm {
+  username: string;
+  password: string;
+  rememberMe: boolean;
+}
+
+const form = ref<LoginForm>({ username: "", password: "", rememberMe: false });
+const authStore = useAuthStore();
+const router = useRouter();
+const usernameRules = [
+  { required: true, message: "Please input your username", trigger: "blur" },
+];
+
+const passwordRules = [
+  { required: true, message: "Please input your password", trigger: "blur" },
+];
+
+// Xử lý đăng nhập
+// Khi trang đăng nhập được mở, tự động điền thông tin đăng nhập nếu có
+form.value.username = authStore.username ? authStore.username : "";
+form.value.password = authStore.password ? authStore.password : "";
+form.value.rememberMe = authStore.rememberMe == "1" ? false : true;
+const handleLogin = async () => {
+  try {
+    await authStore.login(
+      form.value.username,
+      form.value.password,
+      form.value.rememberMe == false ? "1" : "2"
+    );
+    router.push({ name: "home" });
+  } catch (error) {
+    alert(error);
+  }
+};
+</script>
 <style>
 .bg {
   position: relative;

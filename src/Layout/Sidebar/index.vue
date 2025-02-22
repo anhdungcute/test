@@ -119,18 +119,16 @@
       </div>
       <template v-for="(i, index) in navigationRoutes.routes">
         <el-menu-item
-          v-if="!i.children"
+          v-if="!i.children && i.show === true"
           :index="(index + 1).toString()"
           :route="i.name"
         >
-          <el-icon><icon-menu /></el-icon>
           <span>
             {{ i.displayName }}
           </span>
         </el-menu-item>
-        <el-sub-menu v-else :index="(index + 1).toString()">
+        <el-sub-menu v-if="i.show === true" :index="(index + 1).toString()">
           <template #title>
-            <el-icon><location /></el-icon>
             <span>{{ i.displayName }}</span>
           </template>
           <el-menu-item
@@ -149,7 +147,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import Router from "@/routes/router";
-import navigationRoutes, { type INavigationRoute } from './NavigationRoutes'
+import navigationRoutes, { type INavigationRoute } from "./NavigationRoutes";
 import {
   Document,
   Fold,
