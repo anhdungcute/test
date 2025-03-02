@@ -1,13 +1,14 @@
 <template>
-  <el-card class="mt-5">
+  <el-card >
     <template #header>
       <div class="card-header">
-        <span>Chi tiết biến động cơ cấu tài sản</span>
+        <b>Chi tiết biến động cơ cấu tài sản</b>
       </div>
     </template>
     <div>
       <apexchart
         type="bar"
+        height="378"
         :options="data.chartOptions"
         :series="data.series"
       ></apexchart></div
@@ -48,6 +49,9 @@ export default defineComponent({
             height: 350,
             stacked: true,
             stackType: "100%",
+            toolbar :{
+              show: false
+            }
           },
           responsive: [
             {
@@ -66,11 +70,6 @@ export default defineComponent({
           },
           fill: {
             opacity: 1,
-          },
-          legend: {
-            position: "right",
-            offsetX: 0,
-            offsetY: 50,
           },
           dataLabels: {
             formatter: function (val:any, opt:any) {

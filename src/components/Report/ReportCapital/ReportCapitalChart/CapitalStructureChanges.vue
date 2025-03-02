@@ -1,12 +1,13 @@
 <template>
-  <el-card class="mt-5">
+  <el-card >
     <template #header>
       <div class="card-header">
-        <span>Biến động tài sản</span>
+        <b>Biến động tài sản</b>
       </div>
     </template>
     <div>
       <apexchart
+      height="475"
         :options="data.chartOptions"
         :series="data.series"
       ></apexchart></div
@@ -35,6 +36,7 @@ export default defineComponent({
             height: 350,
             stacked: true,
             stackType: "100%",
+            toolbar :{show:false}
           },
           responsive: [
             {
@@ -49,21 +51,11 @@ export default defineComponent({
             },
           ],
           xaxis: {
-            categories: ["2011 Q1", "2011 Q2", "2011 Q3", "2011 Q4"],
+            categories: ["Qtr1", "Qtr2", "Qtr3", "Qtr4"],
           },
           fill: {
             opacity: 1,
           },
-          legend: {
-            position: "right",
-            offsetX: 0,
-            offsetY: 50,
-          },
-        //   dataLabels: {
-        //     formatter: function (val: any, opt: any) {
-        //       return val.toFixed(2) + "bn";
-        //     },
-        //   },
         },
       },
     };

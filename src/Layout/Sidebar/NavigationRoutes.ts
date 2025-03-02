@@ -12,6 +12,11 @@ export default {
   },
   routes: [
     {
+      name: "/dashboard",
+      displayName: "Trang chủ",
+      show: true,
+    },
+    {
       name: "/setting-profile",
       displayName: "Thông tin cá nhân",
       show: false,

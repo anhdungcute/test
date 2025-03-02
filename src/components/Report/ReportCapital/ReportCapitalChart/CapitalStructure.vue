@@ -2,13 +2,13 @@
   <el-card>
     <template #header>
       <div class="card-header">
-        <span>Cơ cấu nguồn vốn</span>
+        <b>Cơ cấu nguồn vốn</b>
       </div>
     </template>
     <div>
       <apexchart
         type="donut"
-        height="350"
+        height="250"
         :options="data.chartOptions"
         :series="data.series"
       ></apexchart>

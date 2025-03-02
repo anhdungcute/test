@@ -2,12 +2,14 @@
 import { UserFilled } from "@element-plus/icons-vue";
 import { ref } from "vue";
 import { useAuthStore } from "@/Stores/auth";
+import { useProfileStore } from "@/Stores/profile";
 import { useRouter } from "vue-router";
 
 const target = ref(null);
 const dialogTableVisible = ref(false);
 const router = useRouter();
 const authStore = useAuthStore();
+const profileStore = useProfileStore();
 const logout = () => {
   authStore.logout();
   router.push({ name: "login" });
@@ -18,19 +20,23 @@ const handleProfile = () => {
 </script>
 
 <template>
-  <div class="relative" ref="target">
+  <div class="relative flex items-center justify-center" ref="target">
+    <div class="mr-2 text-xs">
+      {{ profileStore.profile.name }}
+    </div>
     <el-dropdown placement="bottom-end" trigger="click">
+
       <div class="avavtar">
-        <el-avatar :icon="UserFilled" />
+        <el-avatar  :src-set="profileStore.profile.avatar"/>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item @click="handleProfile">
-            <span class="mr-1"> <i class="fa-solid fa-user"></i></span>Thông tin
+            <span class="mr-1 text-xs"> <i class="fa-solid fa-user"></i></span>Thông tin
             cá nhân
           </el-dropdown-item>
           <el-dropdown-item @click="logout">
-            <span class="mr-1 mt-1"
+            <span class="mr-1 mt-1 text-xs"
               ><i
                 class="fa-solid fa-right-from-bracket"
                 style="padding-bottom: 2px"

@@ -1,13 +1,9 @@
 <template>
   <el-card>
-    <template #header>
-      <div class="card-header">
-        <b>Cơ cấu tài sản</b>
-      </div>
-    </template>
     <div>
       <apexchart
         type="donut"
+        height="300"
         :options="data.chartOptions"
         :series="data.series"
       ></apexchart>
@@ -21,25 +17,36 @@ export default defineComponent({
   data() {
     return {
       data: {
-        series: [44, 55, 41, 17, 30, 25, 60],
+        series: [44, 55, 41, 17],
+
         chartOptions: {
           chart: {
             type: "donut",
           },
           labels: [
-            "Tiền và TĐT",
-            "Đầu tư TC",
-            "Phải thu",
-            "Tài sản cố định",
-            "Tài sản ngắn hạn",
-            "BĐS đầu tư",
-            "Phải thu ngắn hạn",
+            "Nợ chiếm dụng",
+            "VCSH",
+            "Nợ chiếm dụng dài hạn",
+            "Vay ngắn hạn",
+          ],
+          responsive: [
+            {
+              breakpoint: 480,
+              options: {
+                chart: {
+                  width: 200,
+                },
+                legend: {
+                  position: "bottom",
+                },
+              },
+            },
           ],
           fill: {
-              type: 'gradient',
-            },
+            type: "gradient",
+          },
           plotOptions: {
-            pie: {      
+            pie: {
               donut: {
                 labels: {
                   show: true,
@@ -58,7 +65,6 @@ export default defineComponent({
                 },
               },
             },
-          
           },
           legend: {
             position: "bottom",

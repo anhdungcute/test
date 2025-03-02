@@ -2,7 +2,7 @@
   <el-card>
     <template #header>
       <div class="card-header">
-        <span>Tài sản</span>
+        <b>Phân tích</b>
       </div>
     </template>
     <div class="grid grid-cols-1 gap-2">

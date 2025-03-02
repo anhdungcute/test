@@ -1,13 +1,14 @@
 <template>
-  <el-card class="mt-5">
+  <el-card>
     <template #header>
       <div class="card-header">
-        <span>Biến động tài sản</span>
+        <b>Biến động tài sản</b>
       </div>
     </template>
     <div>
       <apexchart
         type="area"
+        height="300"
         :options="data.chartOptions"
         :series="data.series"
       ></apexchart>
@@ -35,6 +36,9 @@ export default defineComponent({
           chart: {
             height: 350,
             type: "area",
+            toolbar: {
+              show:false
+            }
           },
           dataLabels: {
             enabled: false,

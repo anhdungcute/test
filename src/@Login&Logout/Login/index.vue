@@ -70,6 +70,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useAuthStore } from "@/Stores/auth";
+import { useProfileStore } from "@/Stores/profile";
 interface LoginForm {
   username: string;
   password: string;
@@ -78,6 +79,7 @@ interface LoginForm {
 
 const form = ref<LoginForm>({ username: "", password: "", rememberMe: false });
 const authStore = useAuthStore();
+const profileStore = useProfileStore();
 const router = useRouter();
 const usernameRules = [
   { required: true, message: "Please input your username", trigger: "blur" },
@@ -89,21 +91,228 @@ const passwordRules = [
 
 // Xử lý đăng nhập
 // Khi trang đăng nhập được mở, tự động điền thông tin đăng nhập nếu có
-form.value.username = authStore.username ? authStore.username : "";
-form.value.password = authStore.password ? authStore.password : "";
-form.value.rememberMe = authStore.rememberMe == "1" ? false : true;
+form.value.username = authStore.AuthState.username
+  ? authStore.AuthState.username
+  : "";
+form.value.password = authStore.AuthState.password
+  ? authStore.AuthState.password
+  : "";
+form.value.rememberMe = authStore.AuthState.rememberMe == "1" ? false : true;
 const handleLogin = async () => {
   try {
-    await authStore.login(
-      form.value.username,
-      form.value.password,
-      form.value.rememberMe == false ? "1" : "2"
-    );
-    router.push({ name: "home" });
+    if (form.value.username == "admin" && form.value.password == "12345") {
+      await authStore.login(
+        form.value.username,
+        form.value.password,
+        form.value.rememberMe == false ? "1" : "2",
+        data
+      );
+      authStore.setMenu(data.value);
+      profileStore.setProfile({
+        name: "admin",
+        avatar:
+          "https://tiki.vn/blog/wp-content/uploads/2023/01/oLkoHpw9cqRtLPTbg67bgtUvUdV1BnXRnAqqBZOVkEtPgf-_Ct3ADFJYXIjfDd0fTyECLEsWq5yZ2CCOEGxIsuHSmNNNUZQcnQT5-Ld6yoK19Q_Sphb0MmX64ga-O_TIPjItNkTL5ns4zqP1Z0OBzsIoeYKtcewnrjnVsw8vfG8uYwwCDkXaoozCrmH1kA.jpg",
+      });
+      router.push({ name: "home" });
+    } else {
+      await authStore.login(
+        form.value.username,
+        form.value.password,
+        form.value.rememberMe == false ? "1" : "2",
+        data1
+      );
+      authStore.setMenu(data1.value);
+      profileStore.setProfile({
+        name: "user",
+        avatar:
+          "https://tiki.vn/blog/wp-content/uploads/2023/01/oLkoHpw9cqRtLPTbg67bgtUvUdV1BnXRnAqqBZOVkEtPgf-_Ct3ADFJYXIjfDd0fTyECLEsWq5yZ2CCOEGxIsuHSmNNNUZQcnQT5-Ld6yoK19Q_Sphb0MmX64ga-O_TIPjItNkTL5ns4zqP1Z0OBzsIoeYKtcewnrjnVsw8vfG8uYwwCDkXaoozCrmH1kA.jpg",
+      });
+      router.push({ name: "home" });
+    }
   } catch (error) {
     alert(error);
   }
 };
+const data = ref([
+  {
+    name: "/dashboard",
+    displayName: "Trang chủ",
+    show: true,
+  },
+  {
+    name: "/setting-profile",
+    displayName: "Thông tin cá nhân",
+    show: false,
+  },
+  {
+    name: "report-capital",
+    displayName: "Báo cáo nguồn vốn",
+    show: true,
+    children: [
+      {
+        name: "/capital-figures",
+        displayName: "Số liệu nguồn vốn",
+        show: true,
+      },
+      {
+        name: "/capital-chart",
+        displayName: "Báo cáo nguồn vốn",
+        show: true,
+      },
+    ],
+  },
+  {
+    name: "report-asset",
+    displayName: "Báo cáo tài sản",
+    show: true,
+    children: [
+      {
+        name: "/asset-figures",
+        displayName: "Số liệu tài sản",
+        show: true,
+      },
+      {
+        name: "/asset-chart",
+        displayName: "Báo cáo tài sản",
+        show: true,
+      },
+    ],
+  },
+  {
+    name: "relatioship",
+    displayName: "Tương quan tài sản & vốn",
+    show: true,
+    children: [
+      {
+        name: "/relatioship-figures",
+        displayName: "Số liệu tương quan",
+        show: true,
+      },
+      {
+        name: "/relatioship-chart",
+        displayName: "Báo cáo tương quan",
+        show: true,
+      },
+    ],
+  },
+  {
+    name: "managemnet-2",
+    displayName: "Quản lý hệ thống",
+    show: true,
+    children: [
+      {
+        name: "/managemnet-company",
+        displayName: "Quản lý công ty",
+        show: true,
+      },
+      {
+        name: "/managemnet-account",
+        displayName: "Quản lý tài khoản",
+        show: true,
+      },
+      {
+        name: "/managemnet-control",
+        displayName: "Quản lý quyền",
+        show: true,
+      },
+      {
+        name: "/managemnet-account-authorization",
+        displayName: "Quản lý quyền tài khoản",
+        show: true,
+      },
+    ],
+  },
+]);
+const data1 = ref([
+  {
+    name: "/dashboard",
+    displayName: "Trang chủ",
+    show: true,
+  },
+  {
+    name: "/setting-profile",
+    displayName: "Thông tin cá nhân",
+    show: false,
+  },
+  {
+    name: "report-capital",
+    displayName: "Báo cáo nguồn vốn",
+    show: true,
+    children: [
+      {
+        name: "/capital-figures",
+        displayName: "Số liệu nguồn vốn",
+        show: false,
+      },
+      {
+        name: "/capital-chart",
+        displayName: "Báo cáo nguồn vốn",
+        show: true,
+      },
+    ],
+  },
+  {
+    name: "report-asset",
+    displayName: "Báo cáo tài sản",
+    show: true,
+    children: [
+      {
+        name: "/asset-figures",
+        displayName: "Số liệu tài sản",
+        show: false,
+      },
+      {
+        name: "/asset-chart",
+        displayName: "Báo cáo tài sản",
+        show: true,
+      },
+    ],
+  },
+  {
+    name: "relatioship",
+    displayName: "Tương quan tài sản & vốn",
+    show: true,
+    children: [
+      {
+        name: "/relatioship-figures",
+        displayName: "Số liệu tương quan",
+        show: false,
+      },
+      {
+        name: "/relatioship-chart",
+        displayName: "Báo cáo tương quan",
+        show: true,
+      },
+    ],
+  },
+  {
+    name: "managemnet-2",
+    displayName: "Quản lý hệ thống",
+    show: false,
+    children: [
+      {
+        name: "/managemnet-company",
+        displayName: "Quản lý công ty",
+        show: true,
+      },
+      {
+        name: "/managemnet-account",
+        displayName: "Quản lý tài khoản",
+        show: true,
+      },
+      {
+        name: "/managemnet-control",
+        displayName: "Quản lý quyền",
+        show: true,
+      },
+      {
+        name: "/managemnet-account-authorization",
+        displayName: "Quản lý quyền tài khoản",
+        show: true,
+      },
+    ],
+  },
+]);
 </script>
 <style>
 .bg {

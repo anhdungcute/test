@@ -2,10 +2,10 @@
   <el-card>
     <template #header>
       <div class="card-header">
-        <span>Nguồn vốn</span>
+        <b>Nguồn vốn</b>
       </div>
     </template>
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-1 gap-2">
       <div class="nv">
         <div class="text-content m-3">
           <div>Tổng nguồn vốn</div>

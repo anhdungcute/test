@@ -17,11 +17,16 @@ const _routes: Array<vR.RouteRecordRaw> = [
     path: "/",
     name: "home",
     component: DashboardVue,
-    redirect: { path: "/capital-figures" },
+    redirect: { path: "/dashboard" },
     meta: {
       requiresAuth: true, // Trang dash  cần xác thực
     },
     children: [
+      {
+        path: "/dashboard",
+        component: () => import("@components/Dashboard/index.vue"),
+        name: "Trang chủ",
+      },
       {
         path: "/report-capital",
         name: "Báo cáo nguồn vốn",
@@ -142,7 +147,7 @@ const router = vR.createRouter({
 
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
-  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+  if (to.meta.requiresAuth && !authStore.AuthState.isAuthenticated) {
     next({ name: "login" });
   } else {
     next();

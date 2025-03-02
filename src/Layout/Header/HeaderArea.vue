@@ -4,7 +4,8 @@ import DropdownUser from "./DropdownUser.vue";
 
 <template>
   <header
-    class="z-999 drop-shadow-1 dark:bg-boxdark sticky top-0 flex w-full bg-white dark:drop-shadow-none"
+    class=" drop-shadow-1 dark:bg-boxdark sticky top-0 flex w-full bg-white dark:drop-shadow-none"
+    style="z-index: 98;"
   >
     <div
       class="shadow-2 flex flex-grow items-center justify-end px-2 py-2 md:px-6 2xl:px-11"

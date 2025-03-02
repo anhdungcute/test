@@ -6,6 +6,8 @@ import HeaderArea from "@/Layout/Header/HeaderArea.vue";
 import SidebarArea from "@/Layout/Sidebar/index.vue";
 import Breadcrumb from "@/Layout/Breadcrumb/Breadcrumb.vue";
 import Nav from "./Sidebar/NavigationRoutes";
+import { useAuthStore } from "@/Stores/auth";
+import { useProfileStore } from "@/Stores/profile";
 const breadcrumbStore = useBreadcrumbStore();
 const route = useRoute();
 interface Route {
@@ -13,6 +15,8 @@ interface Route {
   displayName: string;
   children?: Route[];
 }
+const useStore = useAuthStore() 
+const profileSotre = useProfileStore() 
 // Hàm cập nhật breadcrumb
 const updateBreadcrumbs = () => {
   function findRouteByName(
@@ -46,7 +50,12 @@ const updateBreadcrumbs = () => {
 };
 
 // Cập nhật breadcrumb khi component được mounted
-onMounted(updateBreadcrumbs);
+// onMounted(updateBreadcrumbs);
+onMounted(() => {
+  updateBreadcrumbs
+  useStore.loadMenu()
+  profileSotre.loadProfile()
+})
 
 // Theo dõi sự thay đổi của route để cập nhật breadcrumb
 watchEffect(updateBreadcrumbs);
@@ -71,7 +80,6 @@ watchEffect(updateBreadcrumbs);
       <main>
         <div class="mx-auto max-w-screen-2xl p-2">
           <Breadcrumb />
-
           <RouterView />
         </div>
       </main>
