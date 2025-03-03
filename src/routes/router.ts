@@ -67,6 +67,45 @@ const _routes: Array<vR.RouteRecordRaw> = [
         ],
       },
       {
+        path: "/EBIT&EBITDA",
+        name: "Báo cáo EBIT&EBITDA",
+        children: [
+          {
+            path: "/EBIT&EBITDA-figures",
+            component: () => import("@components/Report/EBIT&EBITDA/index.vue"),
+            name: "Số liệu EBIT&EBITDA",
+          },
+          {
+            path: "/EBIT&EBITDA-chart",
+            component: () =>
+              import(
+                "@components/Report/EBIT&EBITDA/EBIT&EBITDAChart/index.vue"
+              ),
+            name: "Báo cáo EBIT&EBITDA",
+          },
+        ],
+      },
+      {
+        path: "/business-results",
+        name: "Báo cáo kết quả kinh doanh",
+        children: [
+          {
+            path: "/business-results-figures",
+            component: () =>
+              import("@components/Report/BusinessResults/index.vue"),
+            name: "Số liệu kết quả kinh doanh",
+          },
+          {
+            path: "/business-results-chart",
+            component: () =>
+              import(
+                "@components/Report/BusinessResults/BusinessResultsChart/index.vue"
+              ),
+            name: "Báo cáo kết quả kinh doanh",
+          },
+        ],
+      },
+      {
         path: "/relatioship",
         name: "Tương quan tài sản và nguồn vốn",
         children: [

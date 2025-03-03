@@ -73,6 +73,40 @@ export default {
       ],
     },
     {
+      name: "business-results",
+      displayName: "Kết quả kinh doanh",
+      show: true,
+      children: [
+        {
+          name: "/business-results-figures",
+          displayName: "Số liệu kết quả kinh doanh",
+          show: true,
+        },
+        {
+          name: "/business-results-chart",
+          displayName: "Báo cáo kết quả kinh doanh",
+          show: true,
+        },
+      ],
+    },
+    {
+      name: "EBIT&EBITDA",
+      displayName: "Báo cáo EBIT&EBITDA",
+      show: true,
+      children: [
+        {
+          name: "/EBIT&EBITDA-figures",
+          displayName: "Số liệu EBIT&EBITDA",
+          show: true,
+        },
+        {
+          name: "/EBIT&EBITDA-chart",
+          displayName: "Báo cáo EBIT&EBITDA",
+          show: true,
+        },
+      ],
+    },
+    {
       name: "managemnet-2",
       displayName: "Quản lý hệ thống",
       show: true,

@@ -71,6 +71,7 @@
 import { ref } from "vue";
 import { useAuthStore } from "@/Stores/auth";
 import { useProfileStore } from "@/Stores/profile";
+import NavigationRoutes from "@/Layout/Sidebar/NavigationRoutes";
 interface LoginForm {
   username: string;
   password: string;
@@ -107,7 +108,7 @@ const handleLogin = async () => {
         form.value.rememberMe == false ? "1" : "2",
         data
       );
-      authStore.setMenu(data.value);
+      authStore.setMenu(data);
       profileStore.setProfile({
         name: "admin",
         avatar:
@@ -133,96 +134,7 @@ const handleLogin = async () => {
     alert(error);
   }
 };
-const data = ref([
-  {
-    name: "/dashboard",
-    displayName: "Trang chủ",
-    show: true,
-  },
-  {
-    name: "/setting-profile",
-    displayName: "Thông tin cá nhân",
-    show: false,
-  },
-  {
-    name: "report-capital",
-    displayName: "Báo cáo nguồn vốn",
-    show: true,
-    children: [
-      {
-        name: "/capital-figures",
-        displayName: "Số liệu nguồn vốn",
-        show: true,
-      },
-      {
-        name: "/capital-chart",
-        displayName: "Báo cáo nguồn vốn",
-        show: true,
-      },
-    ],
-  },
-  {
-    name: "report-asset",
-    displayName: "Báo cáo tài sản",
-    show: true,
-    children: [
-      {
-        name: "/asset-figures",
-        displayName: "Số liệu tài sản",
-        show: true,
-      },
-      {
-        name: "/asset-chart",
-        displayName: "Báo cáo tài sản",
-        show: true,
-      },
-    ],
-  },
-  {
-    name: "relatioship",
-    displayName: "Tương quan tài sản & vốn",
-    show: true,
-    children: [
-      {
-        name: "/relatioship-figures",
-        displayName: "Số liệu tương quan",
-        show: true,
-      },
-      {
-        name: "/relatioship-chart",
-        displayName: "Báo cáo tương quan",
-        show: true,
-      },
-    ],
-  },
-  {
-    name: "managemnet-2",
-    displayName: "Quản lý hệ thống",
-    show: true,
-    children: [
-      {
-        name: "/managemnet-company",
-        displayName: "Quản lý công ty",
-        show: true,
-      },
-      {
-        name: "/managemnet-account",
-        displayName: "Quản lý tài khoản",
-        show: true,
-      },
-      {
-        name: "/managemnet-control",
-        displayName: "Quản lý quyền",
-        show: true,
-      },
-      {
-        name: "/managemnet-account-authorization",
-        displayName: "Quản lý quyền tài khoản",
-        show: true,
-      },
-    ],
-  },
-]);
+const data = NavigationRoutes.routes
 const data1 = ref([
   {
     name: "/dashboard",
