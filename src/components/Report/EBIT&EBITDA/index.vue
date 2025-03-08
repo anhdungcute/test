@@ -11,10 +11,10 @@
           />
         </div>
         <div id="nv">
-          <el-divider content-position="left">Nguồn vốn</el-divider>
+          <el-divider content-position="left">EBIT & EBITDA</el-divider>
           <div class="capital-content grid grid-cols-3 gap-4">
             <div>
-              <span>Tổng nguồn vốn</span>
+              <span>Lợi nhuận sau thuế thu nhập doanh nghiệp</span>
               <div>
                 <el-input
                   v-model="capital.total"
@@ -25,7 +25,7 @@
               </div>
             </div>
             <div>
-              <span>Nợ phải trả</span>
+              <span>Chi phí thuế TNDN hiện hành</span>
               <div>
                 <el-input
                   v-model="capital.liabilities"
@@ -36,7 +36,17 @@
               </div>
             </div>
             <div>
-              <span>VCSH</span>
+              <span>Chi phí tài chính</span>
+              <div>
+                <el-input
+                  v-model="capital.vcsh"
+                  placeholder="Nhập VCSH..."
+                  style="width: 100%"
+                />
+              </div>
+            </div>
+            <div>
+              <span>Doanh thu thuần về bán hàng và cung cấp dịch vụ</span>
               <div>
                 <el-input
                   v-model="capital.vcsh"
@@ -47,84 +57,10 @@
             </div>
           </div>
         </div>
-        <div id="ccnv">
-          <el-divider content-position="left">Cơ cấu nguồn vốn</el-divider>
-          <div class="capital-content grid grid-cols-3 gap-4">
-            <div>
-              <span>Vốn ngắn hạn</span>
-              <div>
-                <el-input
-                  v-model="capital.total"
-                  placeholder="Nhập vốn ngắn hạn..."
-                  style="width: 100%"
-                  @change="handleChange"
-                />
-              </div>
-            </div>
-            <div>
-              <span>Vay ngắn hạn</span>
-              <div>
-                <el-input
-                  v-model="capital.liabilities"
-                  placeholder="Nhập vay ngắn hạn..."
-                  style="width: 100%"
-                  @change="handleChange"
-                />
-              </div>
-            </div>
-            <div>
-              <span>Nợ chiếm dụng dài hạn</span>
-              <div>
-                <el-input
-                  v-model="capital.vcsh"
-                  placeholder="Nhập nợ chiếm dụng dài hạn..."
-                  style="width: 100%"
-                />
-              </div>
-            </div>
-            <div>
-              <span>CP tài chính</span>
-              <div>
-                <el-input
-                  v-model="capital.vcsh"
-                  placeholder="Nhập CP tài chính..."
-                  style="width: 100%"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="nv">
-          <el-divider content-position="left">Chi tiết biến động vốn</el-divider>
-          <div class="capital-content grid grid-cols-3 gap-4">
-            <div>
-              <span>VLĐ</span>
-              <div>
-                <el-input
-                  v-model="capital.total"
-                  placeholder="Nhập VLĐ..."
-                  style="width: 100%"
-                  @change="handleChange"
-                />
-              </div>
-            </div>
-            <div>
-              <span>LNST chưa phân phối</span>
-              <div>
-                <el-input
-                  v-model="capital.liabilities"
-                  placeholder="Nhập LNST chưa phân phối..."
-                  style="width: 100%"
-                  @change="handleChange"
-                />
-              </div>
-            </div>
-          </div>
-          <div align="right" class="mt-5">
-            <el-button type="primary">Lưu số liệu</el-button>
-          </div>
-        </div>
       </div>
+      <div align="right" class="mt-5">
+      <el-button type="primary">Lưu số liệu</el-button>
+    </div>
     </el-card>
   </template>
   <script setup lang="ts">

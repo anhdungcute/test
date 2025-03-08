@@ -11,12 +11,10 @@
         />
       </div>
       <div id="nv">
-        <el-divider content-position="left"
-          >Tương quan tài sản và nguồn vốn</el-divider
-        >
+        <el-divider content-position="left">Chi phí</el-divider>
         <div class="capital-content grid grid-cols-3 gap-4">
           <div>
-            <span>Tài sản ngắn hạn</span>
+            <span>Giá vốn bán hàng</span>
             <div>
               <el-input
                 v-model="capital.total"
@@ -27,7 +25,7 @@
             </div>
           </div>
           <div>
-            <span>Tài sản dài hạn</span>
+            <span>Chi phí tài chính</span>
             <div>
               <el-input
                 v-model="capital.total"
@@ -38,71 +36,67 @@
             </div>
           </div>
           <div>
-            <span>Vốn ngắn hạn</span>
+            <span>Chi phí bán hàng </span>
             <div>
               <el-input
-                v-model="capital.liabilities"
-                placeholder="Nhập vốn ngắn hạn..."
+                v-model="capital.total"
+                placeholder="Nhập tổng nguồn vốn..."
                 style="width: 100%"
                 @change="handleChange"
               />
             </div>
           </div>
           <div>
-            <span>Vốn dài hạn</span>
+            <span>Chi phí quản lý doanh nghiệp</span>
             <div>
               <el-input
-                v-model="capital.liabilities"
-                placeholder="Nhập vốn ngắn hạn..."
+                v-model="capital.total"
+                placeholder="Nhập tổng nguồn vốn..."
                 style="width: 100%"
                 @change="handleChange"
               />
             </div>
           </div>
           <div>
-            <span>Tiền & Tiền tương đương tiền</span>
+            <span>Chi phí khác</span>
+            <div>
+              <el-input
+                v-model="capital.total"
+                placeholder="Nhập tổng nguồn vốn..."
+                style="width: 100%"
+                @change="handleChange"
+              />
+            </div>
+          </div>
+          <div>
+            <span>Doanh thu về bán hàng và cung cấp dihcj vụ</span>
+            <div>
+              <el-input
+                v-model="capital.liabilities"
+                placeholder="Nhập nợ phải trả..."
+                style="width: 100%"
+                @change="handleChange"
+              />
+            </div>
+          </div>
+          <div>
+            <span>Chi phí thuế TNDN hiện hành</span>
+            <div>
+              <el-input
+                v-model="capital.total"
+                placeholder="Nhập tổng nguồn vốn..."
+                style="width: 100%"
+                @change="handleChange"
+              />
+            </div>
+          </div>
+          <div>
+            <span>Chi phí thuế TNDN hoãn lại</span>
             <div>
               <el-input
                 v-model="capital.vcsh"
                 placeholder="Nhập VCSH..."
                 style="width: 100%"
-              />
-            </div>
-          </div>
-          <div>
-            <span>Tổng tài sản</span>
-            <div>
-              <el-input
-                v-model="capital.vcsh"
-                placeholder="Nhập VCSH..."
-                style="width: 100%"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="ccnv">
-        <el-divider content-position="left">Chính sách công nợ</el-divider>
-        <div class="capital-content grid grid-cols-3 gap-4">
-          <div>
-            <span>Phải thu ngắn hạn</span>
-            <div>
-              <el-input
-                v-model="capital.total"
-                placeholder="Nhập vốn ngắn hạn..."
-                style="width: 100%"
-                @change="handleChange"
-              />
-            </div>
-          </div>
-          <div>
-            <span>Phải thu dài hạn</span>
-            <div>
-              <el-input
-                v-model="capital.total"
-                placeholder="Nhập vốn ngắn hạn..."
-                style="width: 100%"
-                @change="handleChange"
               />
             </div>
           </div>

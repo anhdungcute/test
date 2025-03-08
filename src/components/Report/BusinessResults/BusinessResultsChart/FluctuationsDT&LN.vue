@@ -77,6 +77,7 @@
             },
             yaxis: {
             },
+            grid: { show: false },
             tooltip: {
               shared: true,
               intersect: false,

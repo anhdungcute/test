@@ -13,32 +13,38 @@
       <el-table :data="users" style="width: 100%" stripe>
         <el-table-column type="index" width="50" />
         <el-table-column
-          prop="username"
+          prop="namecompany"
           label="Tên công ty"
         ></el-table-column>
         <el-table-column prop="email" label="Email"></el-table-column>
-        <el-table-column
-          prop="nameaccount"
-          label="Địa chỉ"
-        ></el-table-column>
+        <el-table-column prop="adress" label="Địa chỉ"></el-table-column>
         <el-table-column label="Hành động">
           <template #default="{ row }">
             <el-button @click="openEditDialog(row)" type="primary" size="small"
               >Sửa</el-button
             >
-            <el-button @click="deleteUser(row.id)" type="danger" size="small"
-              >Xóa</el-button
-            >
+            <el-popconfirm title="Bạn chắc chắn muốn xóa?" @confirm="deleteUser(row.id)">
+              <template #reference>
+                <el-button
+                  type="danger"
+                  size="small"
+                  >Xóa</el-button
+                >
+              </template>
+            </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
 
       <!-- Add/Edit User Dialog -->
-      <el-dialog v-model="dialogVisible" :title=" isEditing ? 'Chỉnh sửa công ty' :'Thêm mới công ty'">
-        <el-form :model="currentUser" ref="formRef" label-width="100px">
+      <el-dialog
+        v-model="dialogVisible"
+        :title="isEditing ? 'Chỉnh sửa công ty' : 'Thêm mới công ty'"
+      >
+        <el-form :model="currentUser" ref="formRef" label-width="120px">
           <el-form-item label="Tên công ty">
             <el-input
-              v-model="currentUser.username"
+              v-model="currentUser.namecompany"
               placeholder="Nhập tên công ty..."
             ></el-input>
           </el-form-item>
@@ -50,7 +56,7 @@
           </el-form-item>
           <el-form-item label="Địa chỉ cty">
             <el-input
-              v-model="currentUser.nameaccount"
+              v-model="currentUser.adress"
               placeholder="Nhập địa chỉ công ty..."
             ></el-input>
           </el-form-item>
@@ -79,11 +85,12 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { v4 as uuidv4 } from "uuid";
+import { ElNotification } from "element-plus";
 
 interface User {
   id: string;
-  username: string;
-  nameaccount: string;
+  namecompany: string;
+  adress: string;
   email: string;
   password: string;
   type: string;
@@ -95,17 +102,17 @@ export default defineComponent({
     const users = ref<User[]>([
       {
         id: "1",
-        username: "john_doe",
-        nameaccount: "tony",
-        email: "john@example.com",
+        namecompany: "CFC Việt nam",
+        adress: "Phạm Hùng",
+        email: "cfccietnam@gmail.com",
         password: "Admin",
         type: "Admin",
       },
       {
         id: "2",
-        username: "jane_smith",
-        nameaccount: "helo",
-        email: "jane@example.com",
+        namecompany: "ITEKO",
+        adress: "Đại mỗ",
+        email: "iteko@gmail.com",
         password: "User",
         type: "User",
       },
@@ -113,8 +120,8 @@ export default defineComponent({
     const dialogVisible = ref(false);
     const currentUser = ref<User>({
       id: "0",
-      username: "",
-      nameaccount: "",
+      namecompany: "",
+      adress: "",
       email: "",
       password: "",
       type: "",
@@ -125,9 +132,9 @@ export default defineComponent({
     const openAddDialog = () => {
       currentUser.value = {
         id: uuidv4(),
-        username: "",
+        namecompany: "",
         email: "",
-        nameaccount: "",
+        adress: "",
         password: "",
         type: "",
       }; // Reset form
@@ -158,10 +165,20 @@ export default defineComponent({
         if (index !== -1) {
           users.value[index] = { ...currentUser.value };
         }
+        ElNotification({
+          title: "Thành công",
+          message: "Chỉnh sửa thành công",
+          type: "success",
+        });
       } else {
         // Thêm người dùng mới
         currentUser.value.id = uuidv4(); // Tạo ID ngẫu nhiên (sử dụng thời gian hiện tại)
         users.value.push({ ...currentUser.value });
+        ElNotification({
+          title: "Thành công",
+          message: "Thêm mới thành công",
+          type: "success",
+        });
       }
       closeDialog();
     };

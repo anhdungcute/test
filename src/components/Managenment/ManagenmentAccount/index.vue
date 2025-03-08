@@ -13,8 +13,8 @@
       <el-table :data="users" style="width: 100%" stripe>
         <el-table-column type="index" width="50" />
         <el-table-column
-          prop="username"
-          label="Username"
+          prop="type"
+          label="Loại tài khoản"
           width="180"
         ></el-table-column>
         <el-table-column
@@ -39,8 +39,14 @@
       </el-table>
 
       <!-- Add/Edit User Dialog -->
-      <el-dialog v-model="dialogVisible" title="User Info">
-        <el-form :model="currentUser" ref="formRef" label-width="100px">
+      <el-dialog v-model="dialogVisible"  :title="isEditing ? 'Chỉnh sửa tài khoản' : 'Thêm mới tài khoản'">
+        <el-form :model="currentUser" ref="formRef" label-width="120px">
+          <el-form-item label="Công ty">
+            <el-select v-model="currentUser.type" placeholder="Chọn công ty">
+              <el-option label="CFC Việt nam" value="Admin"></el-option>
+              <el-option label="ITEKO" value="User"></el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item label="Họ và tên">
             <el-input
               v-model="currentUser.username"
@@ -106,17 +112,17 @@ export default defineComponent({
     const users = ref<User[]>([
       {
         id: "1",
-        username: "john_doe",
-        nameaccount: "tony",
-        email: "john@example.com",
+        username: "admin",
+        nameaccount: "Dũng Đào",
+        email: "dungdao@gmail.com",
         password: "Admin",
         type: "Admin",
       },
       {
         id: "2",
-        username: "jane_smith",
-        nameaccount: "helo",
-        email: "jane@example.com",
+        username: "user",
+        nameaccount: "Hiếu Đào",
+        email: "hieudao@gmail.com",
         password: "User",
         type: "User",
       },

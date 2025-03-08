@@ -11,61 +11,47 @@
         />
       </div>
       <div id="nv">
-        <el-divider content-position="left"
-          >Tương quan tài sản và nguồn vốn</el-divider
-        >
+        <el-divider content-position="left">Tăng trưởng</el-divider>
         <div class="capital-content grid grid-cols-3 gap-4">
           <div>
-            <span>Tài sản ngắn hạn</span>
+            <span>Lợi nhuận gộp về bán hàng và cung cấp dịch vụ</span>
             <div>
               <el-input
                 v-model="capital.total"
-                placeholder="Nhập tổng nguồn vốn..."
+                placeholder="Nhập Lợi nhuận gộp về bán hàng và cung cấp dịch vụ..."
                 style="width: 100%"
                 @change="handleChange"
               />
             </div>
           </div>
           <div>
-            <span>Tài sản dài hạn</span>
-            <div>
-              <el-input
-                v-model="capital.total"
-                placeholder="Nhập tổng nguồn vốn..."
-                style="width: 100%"
-                @change="handleChange"
-              />
-            </div>
-          </div>
-          <div>
-            <span>Vốn ngắn hạn</span>
-            <div>
-              <el-input
-                v-model="capital.liabilities"
-                placeholder="Nhập vốn ngắn hạn..."
-                style="width: 100%"
-                @change="handleChange"
-              />
-            </div>
-          </div>
-          <div>
-            <span>Vốn dài hạn</span>
-            <div>
-              <el-input
-                v-model="capital.liabilities"
-                placeholder="Nhập vốn ngắn hạn..."
-                style="width: 100%"
-                @change="handleChange"
-              />
-            </div>
-          </div>
-          <div>
-            <span>Tiền & Tiền tương đương tiền</span>
+            <span>Lợi nhuận thuần từ hoạt dộng kinh doanh</span>
             <div>
               <el-input
                 v-model="capital.vcsh"
-                placeholder="Nhập VCSH..."
+                placeholder="Nhập Lợi nhuận thuần từ hoạt dộng kinh doanh..."
                 style="width: 100%"
+              />
+            </div>
+          </div>
+          <div>
+            <span>Lợi nhuận sau thuế thu nhập doanh nghiệp</span>
+            <div>
+              <el-input
+                v-model="capital.vcsh"
+                placeholder="Nhập Lợi nhuận thuần từ hoạt dộng kinh doanh..."
+                style="width: 100%"
+              />
+            </div>
+          </div>
+          <div>
+            <span>Doanh thu thuần về bá hàng và cung cáp dịch vụ</span>
+            <div>
+              <el-input
+                v-model="capital.liabilities"
+                placeholder="Nhập Doanh thu thuần về bá hàng và cung cáp dịch vụ..."
+                style="width: 100%"
+                @change="handleChange"
               />
             </div>
           </div>
@@ -73,19 +59,31 @@
             <span>Tổng tài sản</span>
             <div>
               <el-input
-                v-model="capital.vcsh"
-                placeholder="Nhập VCSH..."
+                v-model="capital.liabilities"
+                placeholder="Nhập Tổng tài sản..."
                 style="width: 100%"
+                @change="handleChange"
+              />
+            </div>
+          </div>
+          <div>
+            <span>Vốn chủ sở hữu</span>
+            <div>
+              <el-input
+                v-model="capital.liabilities"
+                placeholder="Nhập Vốn chủ sở hữu..."
+                style="width: 100%"
+                @change="handleChange"
               />
             </div>
           </div>
         </div>
       </div>
       <div id="ccnv">
-        <el-divider content-position="left">Chính sách công nợ</el-divider>
+        <el-divider content-position="left">Biên lợi nhuận</el-divider>
         <div class="capital-content grid grid-cols-3 gap-4">
           <div>
-            <span>Phải thu ngắn hạn</span>
+            <span>Tổng tài sản (CDKT) đầu kỳ</span>
             <div>
               <el-input
                 v-model="capital.total"
@@ -96,7 +94,7 @@
             </div>
           </div>
           <div>
-            <span>Phải thu dài hạn</span>
+            <span>Vốn chủ sở hữu(CDKT) đầu kỳ</span>
             <div>
               <el-input
                 v-model="capital.total"

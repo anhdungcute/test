@@ -43,6 +43,7 @@
                 show: false,
               },
             },
+            grid: { show: false },
             stroke: {
               width: [ 2, 2],
               curve: "straight",

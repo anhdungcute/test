@@ -107,6 +107,40 @@ export default {
       ],
     },
     {
+      name: "total-asset-growth",
+      displayName: "Báo cáo tăng trưởng",
+      show: true,
+      children: [
+        {
+          name: "/total-asset-growth-figures",
+          displayName: "Số liệu tăng trưởng",
+          show: true,
+        },
+        {
+          name: "/total-asset-growth-chart",
+          displayName: "Báo cáo tăng trưởng",
+          show: true,
+        },
+      ],
+    },
+    {
+      name: "cost-analysis",
+      displayName: "Phân tích chi phí",
+      show: true,
+      children: [
+        {
+          name: "/cost-analysis-figures",
+          displayName: "Số liệu phân tích chi phí",
+          show: true,
+        },
+        {
+          name: "/cost-analysis-chart",
+          displayName: "Báo cáo phân tích chi phí",
+          show: true,
+        },
+      ],
+    },
+    {
       name: "managemnet-2",
       displayName: "Quản lý hệ thống",
       show: true,

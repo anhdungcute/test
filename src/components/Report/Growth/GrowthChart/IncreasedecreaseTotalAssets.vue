@@ -2,7 +2,7 @@
   <el-card>
     <template #header>
       <div class="card-header">
-        <b>Hiệu suất sử dụng vốn cố định</b>
+        <b>Hiệu quả hoạt động</b>
       </div>
     </template>
     <div>
@@ -22,9 +22,19 @@ export default defineComponent({
       data: {
         series: [
           {
-            name: "ROE",
+            name: "Biên lợi nhuận gộp",
             type: "line",
-            data: [25, 45, 28, 35],
+            data: [8396, 6479, 7889, 8001],
+          },
+          {
+            name: "Biên lợi nhuận hoạt động",
+            type: "line",
+            data: [178, 250, 278, 335],
+          },
+          {
+            name: "Biên lợi nhuận ròng(ROS)",
+            type: "line",
+            data: [93, 175, 106, 114],
           },
         ],
         chartOptions: {
@@ -39,7 +49,7 @@ export default defineComponent({
             },
           },
           stroke: {
-            width: [2],
+            width: [2, 2],
             curve: "straight",
           },
           plotOptions: {
@@ -47,17 +57,17 @@ export default defineComponent({
               columnWidth: "50%",
             },
           },
-          grid: { show: false },
+
           fill: {
-            opacity: [0.85, 0.25, 1],
-            gradient: {
-              inverseColors: false,
-              shade: "light",
-              type: "vertical",
-              opacityFrom: 0.85,
-              opacityTo: 0.55,
-              stops: [0, 100, 100, 100],
-            },
+            opacity: [0.85, 1],
+            //   gradient: {
+            //     inverseColors: false,
+            //     shade: "light",
+            //     type: "vertical",
+            //     opacityFrom: 0.85,
+            //     opacityTo: 0.55,
+            //     stops: [0, 100, 100, 100],
+            //   },
           },
           markers: {
             size: 5,
@@ -66,6 +76,7 @@ export default defineComponent({
             categories: ["Qtr1", "Qtr2", "Qtr3", "Qtr4"],
           },
           yaxis: {},
+          grid: { show: false },
           tooltip: {
             shared: true,
             intersect: false,

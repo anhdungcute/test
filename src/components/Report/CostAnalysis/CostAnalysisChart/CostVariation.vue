@@ -1,8 +1,9 @@
+cost variation
 <template>
   <el-card>
     <template #header>
       <div class="card-header">
-        <b>Hiệu suất sử dụng vốn cố định</b>
+        <b>Biến động chi phí</b>
       </div>
     </template>
     <div>
@@ -22,9 +23,34 @@ export default defineComponent({
       data: {
         series: [
           {
-            name: "ROE",
+            name: "Daonh thu thuần",
             type: "line",
             data: [25, 45, 28, 35],
+          },
+          {
+            name: "Giá vốn",
+            type: "line",
+            data: [8, 15, 5, 10],
+          },
+          {
+            name: "CP tài chính",
+            type: "line",
+            data: [8, 15, 5, 10],
+          },
+          {
+            name: "Cp bán hàng",
+            type: "line",
+            data: [8, 15, 5, 10],
+          },
+          {
+            name: "Cp quản lý",
+            type: "line",
+            data: [8, 15, 5, 10],
+          },
+          {
+            name: "Cp khác",
+            type: "line",
+            data: [8, 15, 5, 10],
           },
         ],
         chartOptions: {
@@ -39,7 +65,7 @@ export default defineComponent({
             },
           },
           stroke: {
-            width: [2],
+            width: [2, 2],
             curve: "straight",
           },
           plotOptions: {
@@ -47,7 +73,7 @@ export default defineComponent({
               columnWidth: "50%",
             },
           },
-          grid: { show: false },
+
           fill: {
             opacity: [0.85, 0.25, 1],
             gradient: {
@@ -66,6 +92,7 @@ export default defineComponent({
             categories: ["Qtr1", "Qtr2", "Qtr3", "Qtr4"],
           },
           yaxis: {},
+          grid: { show: false },
           tooltip: {
             shared: true,
             intersect: false,

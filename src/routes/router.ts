@@ -86,6 +86,44 @@ const _routes: Array<vR.RouteRecordRaw> = [
         ],
       },
       {
+        path: "/total-asset-growth",
+        name: "Báo cáo Tăng trưởng",
+        children: [
+          {
+            path: "/total-asset-growth-figures",
+            component: () => import("@components/Report/Growth/index.vue"),
+            name: "Số liệu Tăng trưởng",
+          },
+          {
+            path: "/total-asset-growth-chart",
+            component: () =>
+              import(
+                "@components/Report/Growth/GrowthChart/index.vue"
+              ),
+            name: "Báo cáo Tăng trưởng",
+          },
+        ],
+      },
+      {
+        path: "/cost-analysis",
+        name: "Phân tích chi phí",
+        children: [
+          {
+            path: "/cost-analysis-figures",
+            component: () => import("@components/Report/CostAnalysis/index.vue"),
+            name: "Số liệu phân tích chi phí",
+          },
+          {
+            path: "/cost-analysis-chart",
+            component: () =>
+              import(
+                "@components/Report/CostAnalysis/CostAnalysisChart/index.vue"
+              ),
+            name: "Báo cáo phân tích chi phí",
+          },
+        ],
+      },
+      {
         path: "/business-results",
         name: "Báo cáo kết quả kinh doanh",
         children: [
