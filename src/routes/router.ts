@@ -124,6 +124,25 @@ const _routes: Array<vR.RouteRecordRaw> = [
         ],
       },
       {
+        path: "/cash-flow",
+        name: "Dòng tiền",
+        children: [
+          {
+            path: "/cash-flow-figures",
+            component: () => import("@components/Report/CashFlow/index.vue"),
+            name: "Số liệu dòng tiền",
+          },
+          {
+            path: "/cash-flow-chart",
+            component: () =>
+              import(
+                "@components/Report/CashFlow/CashFlowChart/index.vue"
+              ),
+            name: "Báo cáo dòng tiền",
+          },
+        ],
+      },
+      {
         path: "/business-results",
         name: "Báo cáo kết quả kinh doanh",
         children: [

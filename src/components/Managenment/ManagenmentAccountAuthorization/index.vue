@@ -16,7 +16,7 @@
           @change="handleChangeSelect()"
         >
           <el-option
-            v-for="item in options"
+            v-for="item in optionsCompany"
             :key="item.value"
             :label="item.label"
             :value="item.value"
@@ -26,6 +26,7 @@
       <div class="m-4" v-if="dataAccount.length > 1">
         <p>Tài khoản phân quyền</p>
         <el-select
+        v-model="dataAccountPermison"
           multiple
           placeholder="Chọn công ty..."
           style="width: 240px"
@@ -75,6 +76,7 @@ import router from "@/routes/router";
 import { v4 as uuidv4 } from "uuid";
 
 const dataSelect = ref("");
+const dataAccountPermison = ref("");
 const treeProps = reactive({
   checkStrictly: false,
 });
@@ -84,26 +86,14 @@ const tableData = router.options.routes[1].children?.map((item) => {
     ...item,
   };
 });
-const options = [
+const optionsCompany = [
   {
     value: "Option1",
-    label: "Option1",
+    label: "CFC Việt Nam",
   },
   {
     value: "Option2",
-    label: "Option2",
-  },
-  {
-    value: "Option3",
-    label: "Option3",
-  },
-  {
-    value: "Option4",
-    label: "Option4",
-  },
-  {
-    value: "Option5",
-    label: "Option5",
+    label: "ITEKO",
   },
 ];
 const optionsCheckbox = ref([
@@ -126,8 +116,17 @@ const optionsCheckbox = ref([
 ]);
 const checked = ref();
 const handleChangeSelect = () => {
-  dataAccount.value = options;
-  console.log("router", router.options.routes[1].children);
+  dataAccount.value = [
+  {
+    value: "Option1",
+    label: "Admin",
+  },
+  {
+    value: "Option2",
+    label: "User",
+  },
+];;
+  // console.log("router", router.options.routes[1].children);
 };
 const dataAccount = ref([
   {

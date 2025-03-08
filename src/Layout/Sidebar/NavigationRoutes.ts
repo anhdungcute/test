@@ -141,6 +141,23 @@ export default {
       ],
     },
     {
+      name: "cash-flow",
+      displayName: "Dòng tiền",
+      show: true,
+      children: [
+        {
+          name: "/cash-flow-figures",
+          displayName: "Số liệu dòng tiền",
+          show: true,
+        },
+        {
+          name: "/cash-flow-chart",
+          displayName: "Báo cáo dòng tiền",
+          show: true,
+        },
+      ],
+    },
+    {
       name: "managemnet-2",
       displayName: "Quản lý hệ thống",
       show: true,

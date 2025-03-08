@@ -16,7 +16,7 @@
           prop="username"
           label="Tên quyền"
         ></el-table-column>
-        <el-table-column prop="email" label="Mô tả"></el-table-column>
+        <!-- <el-table-column prop="email" label="Mô tả"></el-table-column> -->
         <el-table-column label="Hành động">
           <template #default="{ row }">
             <el-button @click="openEditDialog(row)" type="primary" size="small"
@@ -80,19 +80,36 @@ export default defineComponent({
     const users = ref<User[]>([
       {
         id: "1",
-        username: "john_doe",
+        username: "Thêm ",
+        nameaccount: "tony",
+        email: "john@example.com",
+        password: "Admin",
+        type: "Admin",
+      },
+
+      {
+        id: "2",
+        username: "Sửa",
+        nameaccount: "helo",
+        email: "jane@example.com",
+        password: "User",
+        type: "User",
+      },
+      {
+        id: "3",
+        username: "Xóa ",
         nameaccount: "tony",
         email: "john@example.com",
         password: "Admin",
         type: "Admin",
       },
       {
-        id: "2",
-        username: "jane_smith",
-        nameaccount: "helo",
-        email: "jane@example.com",
-        password: "User",
-        type: "User",
+        id: "4",
+        username: "Xem ",
+        nameaccount: "tony",
+        email: "john@example.com",
+        password: "Admin",
+        type: "Admin",
       },
     ]);
     const dialogVisible = ref(false);

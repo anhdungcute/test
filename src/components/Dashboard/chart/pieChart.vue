@@ -2,7 +2,7 @@
   <el-card>
     <div>
       <apexchart
-      height="300"
+        height="300"
         class="chart-dash"
         :options="data.chartOptions"
         :series="data.series"
@@ -17,13 +17,13 @@ export default defineComponent({
   data() {
     return {
       data: {
-        series: [44, 55, 13, 43, 22],
+        series: [44, 55, 13, 43],
         chartOptions: {
           chart: {
             width: 380,
             type: "pie",
           },
-          labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+          labels: ["Tài sản", "Nguồn vốn", "Lợi nhuận", "Chi phí"],
           responsive: [
             {
               breakpoint: 480,

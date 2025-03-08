@@ -12,12 +12,18 @@
         time-format="A hh:mm:ss"
       />
     </div>
-    <div class="mt-5 grid grid-cols-3 gap-4">
-      <div class="col-span-1">
+    <div class="mt-5 grid grid-cols-6 gap-4">
+      <div class="col-span-2">
         <dountChart />
       </div>
-      <div class="col-span-2">
+      <div class="col-span-4">
         <lineBarChart />
+      </div>
+      <div class="col-span-3">
+        <barChart />
+      </div>
+      <div class="col-span-3">
+        <pieChart />
       </div>
     </div>
   </div>
